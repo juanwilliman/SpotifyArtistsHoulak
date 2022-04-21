@@ -10,9 +10,6 @@ import Foundation
 /// The Authorization Token must be replaced with a new one before running.
 /// You can get a new one at the Spotify Developer Page (INSERT LINK)
 
-let authorizationToken = "BQDauRWhPwlYKy4FTPUCcEDlAfex7HF6jfq43zzoZMn9_PQLABC3m5XtQRSuH-XtAIqRRFD0loAOPwo3hJm84sBOglhIAbU_VZUQS2w9XXOMKMq0e8PUG928WZ9lzzv0dinPCy31uJyoNyljGzjyjO67JVbNEknTRxPRBYKWZ4hp"
-
-let clientID = "d289d842dbeb4c5f9ec702e8e3c7a7e4"
-let clientSecret = "7603d09d6173480a9fbeaf06168e26c8"
+let authorizationToken = "BQB3wlpSSXuoiONc8TTAA0f3-7Wg-RtI5LpwRmPvIxVcE4IMkI5gsE3SX1PLd6CZAng-_DJGSCSz2n-MJJACOL3_BGRpjj5PpIvau6vthoS4NjpNa6On4sq9_NEarXlkuWfBY8IEvIrqnLPYPWhnlH6wCWBwMeCswR2czkTdktct"
 
 let searchArtistsUrl = "https://api.spotify.com/v1/search?q=artist%3A"

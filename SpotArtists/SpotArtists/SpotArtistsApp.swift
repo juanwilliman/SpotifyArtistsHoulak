@@ -11,7 +11,7 @@ import SwiftUI
 struct SpotArtistsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainMenuView()
         }
     }
 }

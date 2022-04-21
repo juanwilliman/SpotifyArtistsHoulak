@@ -12,9 +12,8 @@ public class SpotifyController: ObservableObject {
     
     // MARK: - Artists
     
-    @Published var keywords: String = "The Beatles"
-    @Published var searchResults: SearchResults?
-    @Published var selectedArtist: Artist?
+    @Published var keywords: String = ""
+    @Published var sortedArtistsList: [Artist] = []
     
     // MARK: - Error Alert
     
@@ -37,11 +36,22 @@ public class SpotifyController: ObservableObject {
             }
             if let decodedData = try? JSONDecoder().decode(SearchResults.self, from: data) {
                 DispatchQueue.main.async {
-                    self.searchResults = decodedData
-                    print(self.searchResults!)
+                    self.sortedArtistsList = []
+                    decodedData.artists.items.forEach { artist in
+                        self.sortedArtistsList.append(artist)
+                    }
+                    self.sortedArtistsList.sort { $0.popularity > $1.popularity }
                 }
             }
         }.resume()
+    }
+    
+    // MARK: - Clear Search
+    
+    func clearSearch() {
+        self.keywords = ""
+        //self.searchResults = nil
+        self.sortedArtistsList = []
     }
     
     // MARK: - Get Artist

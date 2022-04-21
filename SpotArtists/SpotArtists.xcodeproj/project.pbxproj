@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E94EF2F22810C0FF00FF19D3 /* SpotArtistsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EF2F12810C0FF00FF19D3 /* SpotArtistsApp.swift */; };
-		E94EF2F42810C0FF00FF19D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EF2F32810C0FF00FF19D3 /* ContentView.swift */; };
+		E94EF2F42810C0FF00FF19D3 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EF2F32810C0FF00FF19D3 /* MainMenuView.swift */; };
 		E94EF2F62810C10100FF19D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E94EF2F52810C10100FF19D3 /* Assets.xcassets */; };
 		E94EF2F92810C10100FF19D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E94EF2F82810C10100FF19D3 /* Preview Assets.xcassets */; };
 		E9F2722D281103EA003C7F27 /* SpotifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F2722C281103EA003C7F27 /* SpotifyController.swift */; };
@@ -16,12 +16,20 @@
 		E9F2723228110C52003C7F27 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F2723128110C52003C7F27 /* Artist.swift */; };
 		E9F272362811ABDB003C7F27 /* ArtistDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F272352811ABDB003C7F27 /* ArtistDetailView.swift */; };
 		E9F2723A2811CB7B003C7F27 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F272392811CB7B003C7F27 /* SearchResults.swift */; };
+		E9F272412811EB04003C7F27 /* Pangram-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9F2723D2811EB04003C7F27 /* Pangram-ExtraLight.otf */; };
+		E9F272422811EB04003C7F27 /* Pangram-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9F2723E2811EB04003C7F27 /* Pangram-Regular.otf */; };
+		E9F272432811EB05003C7F27 /* Pangram-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9F2723F2811EB04003C7F27 /* Pangram-Light.otf */; };
+		E9F272442811EB05003C7F27 /* Pangram-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9F272402811EB04003C7F27 /* Pangram-Bold.otf */; };
+		E9F272462811EB30003C7F27 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F272452811EB30003C7F27 /* Fonts.swift */; };
+		E9F2724D2811EDF7003C7F27 /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F2724C2811EDF7003C7F27 /* UIComponents.swift */; };
+		E9F2724F2811EF15003C7F27 /* ThemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F2724E2811EF15003C7F27 /* ThemeViewModel.swift */; };
+		E9F27253281209C6003C7F27 /* ArtistListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F27252281209C6003C7F27 /* ArtistListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E94EF2EE2810C0FF00FF19D3 /* SpotArtists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotArtists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E94EF2F12810C0FF00FF19D3 /* SpotArtistsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotArtistsApp.swift; sourceTree = "<group>"; };
-		E94EF2F32810C0FF00FF19D3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E94EF2F32810C0FF00FF19D3 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		E94EF2F52810C10100FF19D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E94EF2F82810C10100FF19D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E9F2722C281103EA003C7F27 /* SpotifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyController.swift; sourceTree = "<group>"; };
@@ -29,6 +37,15 @@
 		E9F2723128110C52003C7F27 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		E9F272352811ABDB003C7F27 /* ArtistDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDetailView.swift; sourceTree = "<group>"; };
 		E9F272392811CB7B003C7F27 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		E9F2723D2811EB04003C7F27 /* Pangram-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pangram-ExtraLight.otf"; sourceTree = "<group>"; };
+		E9F2723E2811EB04003C7F27 /* Pangram-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pangram-Regular.otf"; sourceTree = "<group>"; };
+		E9F2723F2811EB04003C7F27 /* Pangram-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pangram-Light.otf"; sourceTree = "<group>"; };
+		E9F272402811EB04003C7F27 /* Pangram-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pangram-Bold.otf"; sourceTree = "<group>"; };
+		E9F272452811EB30003C7F27 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		E9F272492811EC40003C7F27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E9F2724C2811EDF7003C7F27 /* UIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
+		E9F2724E2811EF15003C7F27 /* ThemeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewModel.swift; sourceTree = "<group>"; };
+		E9F27252281209C6003C7F27 /* ArtistListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +78,13 @@
 		E94EF2F02810C0FF00FF19D3 /* SpotArtists */ = {
 			isa = PBXGroup;
 			children = (
-				E9F2723028110C47003C7F27 /* Models */,
+				E9F272492811EC40003C7F27 /* Info.plist */,
 				E94EF2F52810C10100FF19D3 /* Assets.xcassets */,
 				E94EF2F12810C0FF00FF19D3 /* SpotArtistsApp.swift */,
-				E9F2722E281105B7003C7F27 /* SpotifyConstants.swift */,
-				E9F2722C281103EA003C7F27 /* SpotifyController.swift */,
-				E9F272352811ABDB003C7F27 /* ArtistDetailView.swift */,
-				E94EF2F32810C0FF00FF19D3 /* ContentView.swift */,
+				E9F272472811EC08003C7F27 /* Data Access */,
+				E9F2723028110C47003C7F27 /* Models */,
+				E9F272482811EC1D003C7F27 /* Views */,
+				E9F2723B2811EAE1003C7F27 /* UI */,
 				E94EF2F72810C10100FF19D3 /* Preview Content */,
 			);
 			path = SpotArtists;
@@ -88,6 +105,47 @@
 				E9F272392811CB7B003C7F27 /* SearchResults.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E9F2723B2811EAE1003C7F27 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E9F2723C2811EAE9003C7F27 /* Fonts */,
+				E9F2724C2811EDF7003C7F27 /* UIComponents.swift */,
+				E9F2724E2811EF15003C7F27 /* ThemeViewModel.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		E9F2723C2811EAE9003C7F27 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E9F272452811EB30003C7F27 /* Fonts.swift */,
+				E9F272402811EB04003C7F27 /* Pangram-Bold.otf */,
+				E9F2723D2811EB04003C7F27 /* Pangram-ExtraLight.otf */,
+				E9F2723F2811EB04003C7F27 /* Pangram-Light.otf */,
+				E9F2723E2811EB04003C7F27 /* Pangram-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E9F272472811EC08003C7F27 /* Data Access */ = {
+			isa = PBXGroup;
+			children = (
+				E9F2722E281105B7003C7F27 /* SpotifyConstants.swift */,
+				E9F2722C281103EA003C7F27 /* SpotifyController.swift */,
+			);
+			path = "Data Access";
+			sourceTree = "<group>";
+		};
+		E9F272482811EC1D003C7F27 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E94EF2F32810C0FF00FF19D3 /* MainMenuView.swift */,
+				E9F272352811ABDB003C7F27 /* ArtistDetailView.swift */,
+				E9F27252281209C6003C7F27 /* ArtistListCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,7 +207,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E94EF2F92810C10100FF19D3 /* Preview Assets.xcassets in Resources */,
+				E9F272442811EB05003C7F27 /* Pangram-Bold.otf in Resources */,
+				E9F272432811EB05003C7F27 /* Pangram-Light.otf in Resources */,
 				E94EF2F62810C10100FF19D3 /* Assets.xcassets in Resources */,
+				E9F272412811EB04003C7F27 /* Pangram-ExtraLight.otf in Resources */,
+				E9F272422811EB04003C7F27 /* Pangram-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,13 +222,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9F2724F2811EF15003C7F27 /* ThemeViewModel.swift in Sources */,
+				E9F272462811EB30003C7F27 /* Fonts.swift in Sources */,
+				E9F2724D2811EDF7003C7F27 /* UIComponents.swift in Sources */,
 				E9F272362811ABDB003C7F27 /* ArtistDetailView.swift in Sources */,
-				E94EF2F42810C0FF00FF19D3 /* ContentView.swift in Sources */,
+				E94EF2F42810C0FF00FF19D3 /* MainMenuView.swift in Sources */,
 				E9F2722D281103EA003C7F27 /* SpotifyController.swift in Sources */,
 				E94EF2F22810C0FF00FF19D3 /* SpotArtistsApp.swift in Sources */,
 				E9F2723A2811CB7B003C7F27 /* SearchResults.swift in Sources */,
 				E9F2723228110C52003C7F27 /* Artist.swift in Sources */,
 				E9F2722F281105B7003C7F27 /* SpotifyConstants.swift in Sources */,
+				E9F27253281209C6003C7F27 /* ArtistListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +364,7 @@
 				DEVELOPMENT_TEAM = 48ZBUSQKR5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpotArtists/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -327,6 +394,7 @@
 				DEVELOPMENT_TEAM = 48ZBUSQKR5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpotArtists/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
