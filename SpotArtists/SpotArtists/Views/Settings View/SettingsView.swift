@@ -259,13 +259,23 @@ struct SettingsView: View {
     var ExtrasCell: some View {
         VStack(alignment: .leading, spacing: 20) {
             SectionTitle(text: "Extras")
-            HStack(spacing: 17) {
-                Link(destination: URL(string: "https://twitter.com/juan_williman")!) {
-                    RectangleButton(text: "Follow\nMe", glyph: "at", color: .blue, isSelected: colorScheme == .light)
-                }.buttonStyle(BigWithMotion())
-                Button(action: { toggleMail() }) {
-                    RectangleButton(text: "Report\nBug", glyph: "exclamationmark.bubble.fill", color: .purple, isSelected: colorScheme == .light)
-                }.buttonStyle(BigWithMotion())
+            VStack(spacing: 17) {
+                HStack(spacing: 17) {
+                    Link(destination: URL(string: "https://apps.apple.com/us/app/dey-minimal-calendar/id1588981390")!) {
+                        RectangleButton(text: "Get\nDey", glyph: "arrow.down.app.fill", color: .red, isSelected: colorScheme == .light)
+                    }.buttonStyle(BigWithMotion())
+                    Link(destination: URL(string: "https://apps.apple.com/us/app/debotha-text-base-converter/id1593483371")!) {
+                        RectangleButton(text: "Get\nDebotha", glyph: "arrow.down.app.fill", color: .orange, isSelected: colorScheme == .light)
+                    }.buttonStyle(BigWithMotion())
+                }
+                HStack(spacing: 17) {
+                    Link(destination: URL(string: "https://twitter.com/juan_williman")!) {
+                        RectangleButton(text: "Follow\nMe", glyph: "at", color: .blue, isSelected: colorScheme == .light)
+                    }.buttonStyle(BigWithMotion())
+                    Button(action: { toggleMail() }) {
+                        RectangleButton(text: "Report\nBug", glyph: "exclamationmark.bubble.fill", color: .purple, isSelected: colorScheme == .light)
+                    }.buttonStyle(BigWithMotion())
+                }
             }
             .padding(hasHomeButton() ? 3 : 6)
         }
