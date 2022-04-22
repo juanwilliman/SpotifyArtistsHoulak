@@ -158,7 +158,10 @@ struct MainMenuView: View {
                 ForEach(spotifyController.sortedArtistsList, id: \.self) { artist in
                     NavigationLink(destination:
                         ArtistDetailView(artist: artist)
+                            .navigationTitle("")
+                            .navigationBarHidden(true)
                             .environmentObject(spotifyController)
+                            .environmentObject(themeViewModel)
                     ) {
                         ArtistListCell(artist: artist)
                             .environmentObject(themeViewModel)

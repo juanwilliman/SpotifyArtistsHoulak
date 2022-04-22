@@ -278,6 +278,22 @@ public struct AppIconButton: View {
     }
 }
 
+// MARK: - Genres Cell
+
+public struct GenresCell: View {
+    let text: String
+    @AppStorage("selectedFont") var selectedFont: Bool = true
+    @Environment(\.colorScheme) var colorScheme
+    public var body: some View {
+        Text(text)
+            .font(Font.custom(selectedFont ? boldFont : regularFont, size: 16))
+            .foregroundColor(.white)
+            .multilineTextAlignment(.leading)
+            .padding(EdgeInsets(top: 9, leading: 12, bottom: 9, trailing: 12))
+            .background(Capsule().foregroundColor(.accentColor))
+    }
+}
+
 // MARK: - Title
 
 public struct Title: View {

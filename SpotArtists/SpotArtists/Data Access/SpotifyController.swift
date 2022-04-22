@@ -48,6 +48,11 @@ public class SpotifyController: ObservableObject {
                     }
                     self.sortedArtistsList.sort { $0.popularity > $1.popularity }
                 }
+            } else if let decodedData = try? JSONDecoder().decode(ReceivedError.self, from: data) {
+                DispatchQueue.main.async {
+                    self.errorMessage = "\(decodedData.error.status) - \(decodedData.error.message)"
+                    self.showErrorAlert = true
+                }
             }
         }.resume()
     }
@@ -80,6 +85,11 @@ public class SpotifyController: ObservableObject {
                     print(decodedData)
                     artistTopTracks = decodedData
                     return
+                }
+            } else if let decodedData = try? JSONDecoder().decode(ReceivedError.self, from: data) {
+                DispatchQueue.main.async {
+                    self.errorMessage = "\(decodedData.error.status) - \(decodedData.error.message)"
+                    self.showErrorAlert = true
                 }
             }
         }.resume()
