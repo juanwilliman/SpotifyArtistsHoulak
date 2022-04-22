@@ -27,7 +27,8 @@ public class SpotifyController: ObservableObject {
     // MARK: - Set New Authorization Token
     
     func setNewAuthorizationToken(token: String) {
-        UserDefaults.standard.set(token, forKey: "authorizationToken")
+        self.authorizationToken = token
+        UserDefaults.standard.set(self.authorizationToken, forKey: "authorizationToken")
     }
     
     // MARK: - Load Search Results
