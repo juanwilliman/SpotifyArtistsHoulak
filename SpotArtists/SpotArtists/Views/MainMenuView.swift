@@ -14,6 +14,12 @@ struct MainMenuView: View {
     @StateObject var spotifyController: SpotifyController = SpotifyController()
     @EnvironmentObject var themeViewModel: ThemeViewModel
     
+    // MARK: - Functions
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
     // MARK: - Body
     
     var body: some View {
@@ -49,15 +55,16 @@ struct MainMenuView: View {
     }
     
     var SearchButton: some View {
-        Button(action: { spotifyController.loadSearchResults() }) {
+        Button(action: {
+            spotifyController.loadSearchResults()
+            hideKeyboard()
+        }) {
             PrimaryActionButton(glyph: "magnifyingglass", text: "Search")
         }
         .buttonStyle(WithMotion())
         .disabled(spotifyController.keywords.isEmpty)
         .opacity(spotifyController.keywords.isEmpty ? 0.5 : 1)
     }
-    
-    // MARK: - Search Bar
     
     var SearchBar: some View {
         ZStack(alignment: .leading) {
@@ -107,6 +114,7 @@ struct MainMenuView: View {
         NavigationLink(destination:
             SettingsView()
                 .environmentObject(themeViewModel)
+                .environmentObject(spotifyController)
                 .navigationTitle("")
                 .navigationBarHidden(true)
         ) {
@@ -132,14 +140,15 @@ struct MainMenuView: View {
     @ViewBuilder var Search: some View {
         LazyVStack(alignment: .leading) {
             if (spotifyController.sortedArtistsList.isEmpty) {
-                HStack(alignment: .center) {
-                    Spacer()
-                    Text("Welcome to SpotArtist by Houlak!\nSearch your favorite Spotify Artists")
-                        .font(Font.custom(themeViewModel.selectedFont ? boldFont : lightFont, size: 18))
-                        .multilineTextAlignment(.center)
-                        .opacity(0.4)
-                    Spacer()
-                }.padding([.top, .bottom], 15)
+                Text("Welcome to SpotArtists!")
+                    .font(Font.custom(themeViewModel.selectedFont ? boldFont : lightFont, size: 40))
+                    .multilineTextAlignment(.leading)
+                    .padding(EdgeInsets(top: 0, leading: 30, bottom: 15, trailing: 60))
+                Text("Search your Favorite\nSpotify Artists")
+                    .font(Font.custom(themeViewModel.selectedFont ? boldFont : lightFont, size: 23))
+                    .multilineTextAlignment(.leading)
+                    .opacity(0.4)
+                    .padding(EdgeInsets(top: 0, leading: 30, bottom: 20, trailing: 30))
             } else {
                 HStack {
                     ListSectionHeader(text: "Results")

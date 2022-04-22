@@ -20,6 +20,12 @@ public class SpotifyController: ObservableObject {
     @Published var showErrorAlert: Bool = false
     @Published var errorMessage: String = "There was an error."
     
+    // MARK: - Set New Authorization Token
+    
+    func setNewAuthorizationToken(token: String) {
+        UserDefaults.standard.set(token, forKey: "authorizationToken")
+    }
+    
     // MARK: - Load Search Results
     
     func loadSearchResults() {
@@ -79,32 +85,6 @@ public class SpotifyController: ObservableObject {
         }.resume()
         return artistTopTracks
     }
-    
-//    func getArtistTopTracks(_ id: String) -> [ArtistTrack]? {
-//        var artistTopTracks: [ArtistTrack]? = nil
-//        guard let url = URL(string: "https://api.spotify.com/v1/artists/\(id)/top-tracks") else { return nil }
-//        var request = URLRequest(url: url, timeoutInterval: Double.infinity)
-//        request.addValue("Bearer \(authorizationToken)", forHTTPHeaderField: "Authorization")
-//        request.httpMethod = "GET"
-//        URLSession.shared.dataTask(with: request) { data, response, error in
-//            guard let data = data else {
-//                self.errorMessage = String(describing: error)
-//                self.showErrorAlert = true
-//                print(String(describing: error))
-//                return
-//            }
-//            if let decodedData = try? JSONDecoder().decode(TopTracksSearchResults.self, from: data) {
-//                DispatchQueue.main.async {
-//                    artistTopTracks = []
-//                    decodedData.tracks.forEach { track in
-//                        artistTopTracks?.append(track)
-//                    }
-//                    return
-//                }
-//            }
-//        }.resume()
-//        return artistTopTracks
-//    }
     
 }
 

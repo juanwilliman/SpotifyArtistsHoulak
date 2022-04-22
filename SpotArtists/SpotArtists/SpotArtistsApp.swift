@@ -21,6 +21,7 @@ struct SpotArtistsApp: App {
             MainMenuView()
                 .environmentObject(themeViewModel)
                 .preferredColorScheme(themeViewModel.themeIsSystem() ? .none : themeViewModel.getTheme())
+                .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
         }
     }
 }

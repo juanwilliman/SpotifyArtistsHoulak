@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E94BD76C281266C500801698 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94BD76B281266C500801698 /* AuthorizationView.swift */; };
 		E94EF2F22810C0FF00FF19D3 /* SpotArtistsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EF2F12810C0FF00FF19D3 /* SpotArtistsApp.swift */; };
 		E94EF2F42810C0FF00FF19D3 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EF2F32810C0FF00FF19D3 /* MainMenuView.swift */; };
 		E94EF2F62810C10100FF19D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E94EF2F52810C10100FF19D3 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E94BD76B281266C500801698 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		E94EF2EE2810C0FF00FF19D3 /* SpotArtists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotArtists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E94EF2F12810C0FF00FF19D3 /* SpotArtistsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotArtistsApp.swift; sourceTree = "<group>"; };
 		E94EF2F32810C0FF00FF19D3 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
@@ -166,9 +168,10 @@
 			isa = PBXGroup;
 			children = (
 				E9F2725428122330003C7F27 /* SettingsView.swift */,
-				E9F27257281223F9003C7F27 /* MailView.swift */,
 				E9F2725928122553003C7F27 /* ThemeView.swift */,
 				E9F2726028122EAC003C7F27 /* TextSettingsView.swift */,
+				E94BD76B281266C500801698 /* AuthorizationView.swift */,
+				E9F27257281223F9003C7F27 /* MailView.swift */,
 			);
 			path = "Settings View";
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				E9F2725528122330003C7F27 /* SettingsView.swift in Sources */,
 				E9F2722F281105B7003C7F27 /* AuthorizationToken.swift in Sources */,
 				E9F27258281223F9003C7F27 /* MailView.swift in Sources */,
+				E94BD76C281266C500801698 /* AuthorizationView.swift in Sources */,
 				E9F27253281209C6003C7F27 /* ArtistListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

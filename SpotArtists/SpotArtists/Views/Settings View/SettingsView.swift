@@ -16,6 +16,7 @@ struct SettingsView: View {
     @State var result: Result<MFMailComposeResult, Error>? = nil
     
     @EnvironmentObject var themeViewModel: ThemeViewModel
+    @EnvironmentObject var spotifyController: SpotifyController
             
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.presentationMode) var presentationMode
@@ -81,6 +82,7 @@ struct SettingsView: View {
                     ThemeCell
                     TextCell
                 }
+                AuthorizationCell
                 ExtrasCell
                 Spacer().frame(height: 100)
             }
@@ -204,6 +206,52 @@ struct SettingsView: View {
         }
         .buttonStyle(BigWithMotion())
         .padding(hasHomeButton() ? 3 : 6)
+    }
+    
+    // MARK: - Authorization Cell
+    
+    var AuthorizationCell: some View {
+        LazyVStack(alignment: .leading, spacing: 15) {
+            SectionTitle(text: "Authorization")
+            NavigationLink(destination:
+                            AuthorizationView()
+                            .environmentObject(themeViewModel)
+                            .environmentObject(spotifyController)
+                            .navigationTitle("")
+                            .navigationBarHidden(true)
+            ) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 30, style: .continuous)
+                        .foregroundColor(.white.opacity(colorScheme == .light ? 1 : 0.1))
+                        .shadow(color: .black.opacity(0.03), radius: 30, x: 0, y: 20)
+                    HStack {
+                        Image(systemName: "lock.shield")
+                            .font(.system(size: 33))
+                            .foregroundColor(.green)
+                            .padding(.trailing, 5)
+                        VStack(alignment: .leading) {
+                            Text("Spotify Token")
+                                .font(Font.custom(themeViewModel.selectedFont ? boldFont : lightFont, size: 18))
+                                .foregroundColor(.primary)
+                            Text("Get new Token")
+                                .font(Font.custom(themeViewModel.selectedFont ? boldFont : regularFont, size: 13))
+                                .minimumScaleFactor(0.8)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(.primary)
+                                .opacity(0.3)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.primary)
+                            .opacity(0.2)
+                            .font(.system(size: 18))
+                    }
+                    .padding(EdgeInsets(top: 20, leading: 23, bottom: 20, trailing: 27))
+                }
+            }
+            .buttonStyle(BigWithMotion())
+            .padding(hasHomeButton() ? 3 : 6)
+        }
     }
     
     // MARK: - Extras Cell
