@@ -20,6 +20,8 @@ public class SpotifyController: ObservableObject {
     @Published var showErrorAlert: Bool = false
     @Published var errorMessage: String = "There was an error."
     
+    @Published var artistTopTracks: [ArtistTrack] = []
+    
     // MARK: - Set New Authorization Token
     
     func setNewAuthorizationToken(token: String) {
@@ -66,9 +68,8 @@ public class SpotifyController: ObservableObject {
     
     // MARK: - Get Artist's Top Tracks
     
-    func getArtistTopTracks(_ id: String) -> [ArtistTrack]? {
-        var artistTopTracks: [ArtistTrack]? = nil
-        guard let url = URL(string: "https://api.spotify.com/v1/artists/\(id)/top-tracks?market=ES") else { return nil }
+    func getArtistTopTracks(id: String) {
+        guard let url = URL(string: "https://api.spotify.com/v1/artists/\(id)/top-tracks?market=ES") else { return }
         var request = URLRequest(url: url, timeoutInterval: Double.infinity)
         request.addValue("Bearer \(authorizationToken)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
@@ -79,21 +80,19 @@ public class SpotifyController: ObservableObject {
                 print(String(describing: error))
                 return
             }
-            print(String(data: data, encoding: .utf8)!)
-            if let decodedData = try? JSONDecoder().decode([ArtistTrack].self, from: data) {
+            if let decodedData = try? JSONDecoder().decode(TopTracksSearchResults.self, from: data) {
                 DispatchQueue.main.async {
-                    print(decodedData)
-                    artistTopTracks = decodedData
+                    self.artistTopTracks = Array(decodedData.tracks.prefix(5))
                     return
                 }
             } else if let decodedData = try? JSONDecoder().decode(ReceivedError.self, from: data) {
                 DispatchQueue.main.async {
                     self.errorMessage = "\(decodedData.error.status) - \(decodedData.error.message)"
                     self.showErrorAlert = true
+                    return
                 }
             }
         }.resume()
-        return artistTopTracks
     }
     
 }

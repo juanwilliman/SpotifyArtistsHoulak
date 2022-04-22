@@ -14,7 +14,6 @@ struct ArtistDetailView: View {
     // MARK: - Variables
     
     @State var artist: Artist
-    @State var topTracks: [ArtistTrack] = []
     
     @EnvironmentObject var spotifyController: SpotifyController
     @EnvironmentObject var themeViewModel: ThemeViewModel
@@ -41,7 +40,7 @@ struct ArtistDetailView: View {
             .navigationBarHidden(true)
         }
         .onAppear {
-            self.topTracks = spotifyController.getArtistTopTracks(artist.id) ?? []
+            spotifyController.getArtistTopTracks(id: artist.id)
         }
     }
     
@@ -89,8 +88,8 @@ struct ArtistDetailView: View {
     // MARK: - Details
     
     var Details: some View {
-        ScrollView(.vertical) {
-            LazyVStack(spacing: 15) {
+        ScrollView(.vertical, showsIndicators: false) {
+            LazyVStack(spacing: 25) {
                 TopHeader
                 ZStack {
                     artistImage
@@ -104,6 +103,20 @@ struct ArtistDetailView: View {
                         .padding(25)
                 }.padding(.top, -20)
                 if (!artist.genres.isEmpty) { Genres }
+                if (!spotifyController.artistTopTracks.isEmpty) { TopTracks }
+                if (artist.genres.isEmpty && spotifyController.artistTopTracks.isEmpty) {
+                    HStack {
+                        Spacer()
+                        Text("This Artist doesn't have a specified Genre and Top Tracks.")
+                            .font(Font.custom(themeViewModel.selectedFont ? boldFont : regularFont, size: 15))
+                            .minimumScaleFactor(0.4)
+                            .multilineTextAlignment(.center)
+                            .lineSpacing(3.5)
+                            .opacity(0.4)
+                            .padding(EdgeInsets(top: 5, leading: 30, bottom: hasHomeButton() ? 7 : 10, trailing: 30))
+                        Spacer()
+                    }
+                }
                 Spacer().frame(height: 100)
             }
             .padding([.leading, .trailing], 16)
@@ -131,18 +144,32 @@ struct ArtistDetailView: View {
     
     @ViewBuilder
     var Genres: some View {
-        VStack(alignment: .leading, spacing: 15) {
+        VStack(alignment: .leading, spacing: 25) {
             SectionTitle(text: "Genres")
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
-                    Spacer().frame(width: 20)
+                    Spacer().frame(width: 10)
                     ForEach(artist.genres, id: \.self) { genre in
                         GenresCell(text: genre)
                     }
-                    Spacer().frame(width: 20)
+                    Spacer().frame(width: 10)
                 }
             }.padding([.leading, .trailing], -16)
-        }.padding(.top, -15)
+        }.padding(.top, -25)
+    }
+    
+    // MARK: - Top Tracks
+
+    @ViewBuilder
+    var TopTracks: some View {
+        VStack(alignment: .leading, spacing: 25) {
+            SectionTitle(text: "Top Tracks")
+            LazyVStack(alignment: .leading, spacing: 20) {
+                ForEach(spotifyController.artistTopTracks, id: \.self) { track in
+                    TopTrackCell(text: track.name)
+                }
+            } .padding([.leading, .trailing], 10)
+        }
     }
     
 }

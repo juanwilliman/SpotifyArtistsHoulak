@@ -283,14 +283,37 @@ public struct AppIconButton: View {
 public struct GenresCell: View {
     let text: String
     @AppStorage("selectedFont") var selectedFont: Bool = true
-    @Environment(\.colorScheme) var colorScheme
     public var body: some View {
         Text(text)
-            .font(Font.custom(selectedFont ? boldFont : regularFont, size: 16))
+            .font(Font.custom(selectedFont ? boldFont : regularFont, size: 18))
             .foregroundColor(.white)
             .multilineTextAlignment(.leading)
-            .padding(EdgeInsets(top: 9, leading: 12, bottom: 9, trailing: 12))
+            .padding(EdgeInsets(top: 9, leading: 14, bottom: 9, trailing: 14))
             .background(Capsule().foregroundColor(.accentColor))
+    }
+}
+
+// MARK: - Top Track Cell
+
+public struct TopTrackCell: View {
+    let text: String
+    @AppStorage("selectedFont") var selectedFont: Bool = true
+    @Environment(\.colorScheme) var colorScheme
+    public var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 30, style: .continuous)
+                .foregroundColor(.white.opacity(colorScheme == .light ? 1 : 0.25))
+            HStack(spacing: 15) {
+                Image(systemName: "music.note")
+                    .foregroundColor(.accentColor)
+                    .font(.system(size: 25))
+                Text(text)
+                    .font(Font.custom(selectedFont ? boldFont : regularFont, size: 18))
+                    .multilineTextAlignment(.leading)
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 18, leading: 23, bottom: 18, trailing: 23))
+        }
     }
 }
 
