@@ -74,7 +74,7 @@ struct BigWithMotion: ButtonStyle {
     }
 }
 
-// MARK: - Components
+// MARK: - Bottom Bar Background
 
 public struct BottomBarBackground: View {
     public var body: some View {
@@ -86,6 +86,30 @@ public struct BottomBarBackground: View {
             .blur(radius: 25)
     }
 }
+
+// MARK: - Settings Bottom Bar Background
+
+public struct SettingsBottomBarBackground: View {
+    @Environment(\.colorScheme) var colorScheme
+    public var body: some View {
+        if (colorScheme == .dark) {
+            Rectangle()
+                .frame(width: UIScreen.main.bounds.width + 200, height: 200)
+                .foregroundColor(.black)
+                .offset(y: 120)
+                .blur(radius: 25)
+        } else {
+            Rectangle()
+                .frame(width: UIScreen.main.bounds.width + 200, height: 200)
+                .foregroundColor(.clear)
+                .background(.thinMaterial, in: Rectangle())
+                .offset(y: 120)
+                .blur(radius: 25)
+        }
+    }
+}
+
+// MARK: - Primary Action Button
 
 public struct PrimaryActionButton: View {
     let glyph: String
@@ -108,13 +132,181 @@ public struct PrimaryActionButton: View {
             if (showButtonLabels) {
                 Text(text)
                     .font(Font.custom(selectedFont ? boldFont : lightFont, size: 16))
-                    .foregroundColor(glyph == "" && selectedColor ? .accentColor : .primary)
+                    .foregroundColor(glyph == "magnifyingglass" && selectedColor ? .accentColor : .primary)
                     .offset(y: 3)
             }
         }
         .offset(y: showButtonLabels ? 12 : 0)
     }
 }
+
+// MARK: - Rectangle Button
+
+public struct RectangleButton: View {
+    let text: String
+    let glyph: String
+    let color: Color
+    let isSelected: Bool
+    @Environment(\.colorScheme) var colorScheme
+    @AppStorage("selectedFont") var selectedFont: Bool = true
+    public var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 30, style: .continuous)
+                .foregroundColor(isSelected ? .white : .primary.opacity(colorScheme == .light ? 0.03 : 0.1))
+                .shadow(color: .black.opacity(isSelected ? 0.03 : 0), radius: 30, x: 0, y: 20)
+            VStack {
+                HStack {
+                    Image(systemName: glyph)
+                        .foregroundColor(color)
+                        .font(.system(size: 25))
+                    Spacer()
+                }
+                Spacer()
+                HStack {
+                    Spacer()
+                    Text(text)
+                        .font(Font.custom(selectedFont ? boldFont : lightFont, size: 18))
+                        .foregroundColor(isSelected ? .black : .primary)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.trailing)
+                        .minimumScaleFactor(0.5)
+                }
+            }
+            .padding(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 22))
+        }
+        .frame(height: 120)
+    }
+}
+
+// MARK: - Theme Button
+
+public struct ThemeButton: View {
+    let image: Image
+    let isSelected: Bool
+    @Environment(\.colorScheme) var colorScheme
+    public var body: some View {
+        image
+            .resizable()
+            .scaledToFit()
+            .cornerRadius(23)
+            .scaleEffect(isSelected ? 1 : 0.9)
+            .opacity(isSelected ? 1 : 0.8)
+            .shadow(color: .black.opacity(0.13), radius: 30, x: 3, y: 20)
+    }
+}
+
+// MARK: - Color Theme Button
+
+public struct ColorThemeButton: View {
+    
+    let text: String
+    let image: String
+    let isSelected: Bool
+    
+    @AppStorage("selectedFont") var selectedFont: Bool = true
+    @Environment(\.colorScheme) var colorScheme
+    
+    func getImage() -> String {
+        return isSelected ? "\(image) - Light" : "\(image) - \(colorScheme == .light ? "Light" : "Dark")"
+    }
+    
+    public var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 30, style: .continuous)
+                .foregroundColor(isSelected ? .white : .primary.opacity(colorScheme == .light ? 0.03 : 0.1))
+                .shadow(color: .black.opacity(isSelected ? 0.03 : 0), radius: 30, x: 0, y: 20)
+            VStack {
+                HStack {
+                    ZStack {
+                        if (colorScheme == .light || isSelected) {
+                            Image(getImage())
+                                .resizable()
+                                .frame(width: 40, height: 40, alignment: .center)
+                                .mask(Circle().frame(width: 40, height: 40))
+                                .blur(radius: 10)
+                                .opacity(0.45)
+                                .offset(y: 8)
+                        }
+                        Image(getImage())
+                            .resizable()
+                            .frame(width: 45, height: 45, alignment: .center)
+                            .mask(Circle().frame(width: 45, height: 45))
+                    }
+                    Spacer()
+                }
+                Spacer()
+                HStack {
+                    Spacer()
+                    Text(text)
+                        .font(Font.custom(selectedFont ? boldFont : lightFont, size: 20))
+                        .foregroundColor(isSelected ? .black : .primary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                }
+            }
+            .padding(EdgeInsets(top: 11, leading: 13, bottom: 16, trailing: 22))
+        }
+        .frame(height: 120)
+    }
+}
+
+// MARK: - App Icon Button
+
+public struct AppIconButton: View {
+    let icon: String
+    let text: String
+    let isSelected: Bool
+    @AppStorage("selectedFont") var selectedFont: Bool = true
+    @Environment(\.colorScheme) var colorScheme
+    public var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 30, style: .continuous)
+                .foregroundColor(isSelected ? .white : .primary.opacity(colorScheme == .light ? 0.03 : 0.1))
+            VStack(alignment: .center, spacing: 20) {
+                Image(icon)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 75, height: 75, alignment: .center)
+                    .cornerRadius(18)
+                    .shadow(color: Color.black.opacity(0.15), radius: 15, x: 5, y: 10)
+                Text(text)
+                    .font(Font.custom(selectedFont ? boldFont : regularFont, size: 18))
+                    .foregroundColor(isSelected ? .black : .primary)
+            }
+            .padding(EdgeInsets(top: 33, leading: 0, bottom: 20, trailing: 0))
+        }
+    }
+}
+
+// MARK: - Title
+
+public struct Title: View {
+    let text: String
+    @AppStorage("selectedFont") var selectedFont: Bool = true
+    public var body: some View {
+        Text(text)
+            .font(Font.custom(selectedFont ? boldFont : lightFont, size: 45))
+            .multilineTextAlignment(.leading)
+            .padding(EdgeInsets(top: hasHomeButton() ? 7 : 25, leading: hasHomeButton() ? 7 : 15, bottom: 5, trailing: hasHomeButton() ? 7 : 15))
+    }
+}
+
+// MARK: - Section Title
+
+public struct SectionTitle: View {
+    let text: String
+    @AppStorage("selectedFont") var selectedFont: Bool = true
+    public var body: some View {
+        HStack {
+            Text(text)
+                .font(Font.custom(selectedFont ? boldFont : regularFont, size: 26))
+            Spacer()
+        }
+        .padding(EdgeInsets(top: 0, leading: hasHomeButton() ? 8 : 17, bottom: 0, trailing: hasHomeButton() ? 8 : 17))
+    }
+}
+
+// MARK: - List Section Header
 
 public struct ListSectionHeader: View {
     let text: String

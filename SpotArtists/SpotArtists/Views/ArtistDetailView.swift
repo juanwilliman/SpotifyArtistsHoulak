@@ -15,6 +15,8 @@ struct ArtistDetailView: View {
     
     @State var artist: Artist
     
+    @State var topTracks: [ArtistTrack] = []
+    
     @EnvironmentObject var spotifyController: SpotifyController
     
     // MARK: - Body
@@ -29,7 +31,14 @@ struct ArtistDetailView: View {
             .frame(width: 128, height: 128)
             .clipShape(RoundedRectangle(cornerRadius: 25))
             Text(artist.name)
-            Text("\(artist.popularity)")
+            Text("Popularity: \(artist.popularity)")
+            Text("Top Tracks")
+            ForEach(self.topTracks, id: \.self) { track in
+                Text(track.name).foregroundColor(.red)
+            }
+        }
+        .onAppear {
+            self.topTracks = spotifyController.getArtistTopTracks(artist.id) ?? []
         }
     }
     

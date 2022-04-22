@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - Artist
+
 struct Artist: Decodable, Hashable {
     
     var genres: [String]
@@ -24,6 +26,8 @@ struct Artist: Decodable, Hashable {
     }
     
 }
+
+// MARK: - Artist Image
 
 struct ArtistImage: Decodable {
     var url: String

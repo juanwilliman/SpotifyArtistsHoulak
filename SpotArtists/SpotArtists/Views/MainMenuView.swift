@@ -12,7 +12,7 @@ struct MainMenuView: View {
     // MARK: - Variables
         
     @StateObject var spotifyController: SpotifyController = SpotifyController()
-    @StateObject var themeViewModel: ThemeViewModel = ThemeViewModel()
+    @EnvironmentObject var themeViewModel: ThemeViewModel
     
     // MARK: - Body
     
@@ -50,7 +50,7 @@ struct MainMenuView: View {
     
     var SearchButton: some View {
         Button(action: { spotifyController.loadSearchResults() }) {
-            PrimaryActionButton(glyph: "magnifyingglass", text: "Back")
+            PrimaryActionButton(glyph: "magnifyingglass", text: "Search")
         }
         .buttonStyle(WithMotion())
         .disabled(spotifyController.keywords.isEmpty)
@@ -95,8 +95,25 @@ struct MainMenuView: View {
                     .padding(.top, -12)
             }
             Spacer()
+            VStack {
+                SettingsButton
+                Spacer()
+            }
         }
-        .padding(EdgeInsets(top: 30, leading: 30, bottom: 20, trailing: hasHomeButton() ? 45 : 55))
+        .padding(EdgeInsets(top: 30, leading: 30, bottom: 20, trailing: 30))
+    }
+    
+    var SettingsButton: some View {
+        NavigationLink(destination:
+            SettingsView()
+                .environmentObject(themeViewModel)
+                .navigationTitle("")
+                .navigationBarHidden(true)
+        ) {
+            Image(systemName: "gear")
+                .foregroundColor(.accentColor)
+                .font(.system(size: 23))
+        }.buttonStyle(WithMotion())
     }
     
     // MARK: - Main View

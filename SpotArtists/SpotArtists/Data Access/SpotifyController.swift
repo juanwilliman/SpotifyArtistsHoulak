@@ -50,15 +50,14 @@ public class SpotifyController: ObservableObject {
     
     func clearSearch() {
         self.keywords = ""
-        //self.searchResults = nil
         self.sortedArtistsList = []
     }
     
-    // MARK: - Get Artist
+    // MARK: - Get Artist's Top Tracks
     
-    func getArtist(_ id: String) -> Artist? {
-        var artist: Artist? = nil
-        guard let url = URL(string: "https://api.spotify.com/v1/artists/\(id)") else { return nil }
+    func getArtistTopTracks(_ id: String) -> [ArtistTrack]? {
+        var artistTopTracks: [ArtistTrack]? = nil
+        guard let url = URL(string: "https://api.spotify.com/v1/artists/\(id)/top-tracks?market=ES") else { return nil }
         var request = URLRequest(url: url, timeoutInterval: Double.infinity)
         request.addValue("Bearer \(authorizationToken)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
@@ -69,15 +68,43 @@ public class SpotifyController: ObservableObject {
                 print(String(describing: error))
                 return
             }
-            if let decodedData = try? JSONDecoder().decode(Artist.self, from: data) {
+            print(String(data: data, encoding: .utf8)!)
+            if let decodedData = try? JSONDecoder().decode([ArtistTrack].self, from: data) {
                 DispatchQueue.main.async {
-                    artist = decodedData
+                    print(decodedData)
+                    artistTopTracks = decodedData
                     return
                 }
             }
         }.resume()
-        return artist
+        return artistTopTracks
     }
+    
+//    func getArtistTopTracks(_ id: String) -> [ArtistTrack]? {
+//        var artistTopTracks: [ArtistTrack]? = nil
+//        guard let url = URL(string: "https://api.spotify.com/v1/artists/\(id)/top-tracks") else { return nil }
+//        var request = URLRequest(url: url, timeoutInterval: Double.infinity)
+//        request.addValue("Bearer \(authorizationToken)", forHTTPHeaderField: "Authorization")
+//        request.httpMethod = "GET"
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            guard let data = data else {
+//                self.errorMessage = String(describing: error)
+//                self.showErrorAlert = true
+//                print(String(describing: error))
+//                return
+//            }
+//            if let decodedData = try? JSONDecoder().decode(TopTracksSearchResults.self, from: data) {
+//                DispatchQueue.main.async {
+//                    artistTopTracks = []
+//                    decodedData.tracks.forEach { track in
+//                        artistTopTracks?.append(track)
+//                    }
+//                    return
+//                }
+//            }
+//        }.resume()
+//        return artistTopTracks
+//    }
     
 }
 
