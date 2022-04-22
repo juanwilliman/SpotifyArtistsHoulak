@@ -15,6 +15,8 @@ struct ArtistDetailView: View {
     
     @State var artist: Artist
     
+    @State var topTracks: [ArtistTrack] = []
+    
     @EnvironmentObject var spotifyController: SpotifyController
     @EnvironmentObject var themeViewModel: ThemeViewModel
     
@@ -40,7 +42,14 @@ struct ArtistDetailView: View {
             .navigationBarHidden(true)
         }
         .onAppear {
-            spotifyController.getArtistTopTracks(id: artist.id)
+            spotifyController.getArtistTopTracks(id: artist.id, tracksCompletionHandler: { tracks, error in
+                if let tracks = tracks {
+                    self.topTracks = tracks
+                }
+            })
+        }
+        .alert(isPresented: $spotifyController.showErrorAlert) {
+            Alert(title: Text("Error"), message: Text(spotifyController.errorMessage), dismissButton: .default(Text("OK").bold()))
         }
     }
     
@@ -103,8 +112,8 @@ struct ArtistDetailView: View {
                         .padding(25)
                 }.padding(.top, -20)
                 if (!artist.genres.isEmpty) { Genres }
-                if (!spotifyController.artistTopTracks.isEmpty) { TopTracks }
-                if (artist.genres.isEmpty && spotifyController.artistTopTracks.isEmpty) {
+                if (!topTracks.isEmpty) { TopTracks }
+                if (artist.genres.isEmpty && topTracks.isEmpty) {
                     HStack {
                         Spacer()
                         Text("This Artist doesn't have a specified Genre and Top Tracks.")
@@ -165,7 +174,7 @@ struct ArtistDetailView: View {
         VStack(alignment: .leading, spacing: 25) {
             SectionTitle(text: "Top Tracks")
             LazyVStack(alignment: .leading, spacing: 20) {
-                ForEach(spotifyController.artistTopTracks, id: \.self) { track in
+                ForEach(topTracks, id: \.self) { track in
                     TopTrackCell(text: track.name)
                 }
             } .padding([.leading, .trailing], 10)
